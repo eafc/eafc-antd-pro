@@ -19,4 +19,9 @@ declare namespace eafc {
 
     // EafcRadio Props
     export type EafcRadioProps = EnumSourceType & RadioGroupProps
+
+    // EafcCheckbox Props
+    export type EafcCheckboxProps = {
+        showAction?: boolean // 是否展示操作按钮：全选、反选
+    } & EnumSourceType & CheckboxGroupProps
 }

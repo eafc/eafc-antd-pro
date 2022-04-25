@@ -93,5 +93,5 @@ export default () => {
 | options      | 本地数据源                   | `eafc.Option[]`,示例：[{"value":"","label":""}] | -      |
 | url          | 服务端数据源url              | `string`                                       | -      |
 | enumKey      | 服务端枚举Key                | `string`                                       | -      |
-| ...          | 支持原`RadioGroup`组件的所有props | -                                          | -      |
+| ...          | 支持原`Radio.Group`组件的所有props | -                                          | -      |
 
