@@ -30,6 +30,7 @@ const options = [
     {
       value: 'value1',
       label: 'label1',
+      disabled: true
     },
     {
       value: 'value2',

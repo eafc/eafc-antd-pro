@@ -4,6 +4,7 @@ declare namespace eafc {
     export type Option = {
         label: string,
         value: string,
+        disabled?: boolean
     }
 
     // 枚举数据源 Props

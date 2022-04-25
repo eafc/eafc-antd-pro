@@ -7,7 +7,7 @@ const EafcSelect: React.FC<eafc.EafcSelectProps> = ({ options, url, enumKey, ...
     const enums = useEnum<eafc.Option[]>({ options: options, url: url, key: enumKey });
 
     return (<Select {...selectProps}>
-        {enums.map(option => <Select.Option key={option.value} value={option.value}>{option.label}</Select.Option>)}
+        {enums.map(option => <Select.Option key={option.value} value={option.value} disabled={option.disabled}>{option.label}</Select.Option>)}
     </Select>)
 }
 
