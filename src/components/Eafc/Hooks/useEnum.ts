@@ -13,37 +13,32 @@ const DefaultEnumHandler = (options: eafc.Option[]) => options;
  * 枚举Query，优先级：options > url > key
  */
 type EnumQuery<T> = {
-  options?: eafc.Option[], // 本地枚举集合
-  url?: string, // 枚举查询URL
-  key?: string, // 服务端枚举Key，对应查询Api：eafc.getEnumApi(query.key)
   resultHandler?: (options: eafc.Option[] | any) => T; // 自定义结果处理器
-}
+} & eafc.EnumSourceType
 
-export const useEnum = function <T>(query: EnumQuery<T>) {
+export const useEnum = function <T>({ options, url, enumKey, resultHandler }: EnumQuery<T>) {
   const [enums, setEnums] = useState<eafc.Option[]>([]);
 
   useEffect(() => {
     const queryEnums = async () => {
-      let options: eafc.Option[] = [];
-      if (query.options) {
-        options = query.options;
-      } else if (query.url) {
-        options = await request<eafc.Option[]>(query.url, { method: 'GET' }) || [];
-      } else if (query.key) {
-        options = await request<eafc.Option[]>(eafc.getEnumApi(query.key), { method: 'GET' }) || [];
+      let enumOptions: eafc.Option[] = [];
+      if (options) {
+        enumOptions = options;
+      } else if (url) {
+        enumOptions = await request<eafc.Option[]>(url, { method: 'GET' }) || [];
+      } else if (enumKey) {
+        enumOptions = await request<eafc.Option[]>(eafc.getEnumApi(enumKey), { method: 'GET' }) || [];
       }
 
-      setEnums(options);
+      setEnums(enumOptions);
     };
 
     queryEnums();
-  }, [query.options, query.url, query.key, query.resultHandler]);
+  }, [options, url, enumKey, resultHandler]);
 
-
-  const resultHandler = query.resultHandler ?? DefaultEnumHandler;
-  return resultHandler(enums);
+  const enumHandler = resultHandler ?? DefaultEnumHandler;
+  return enumHandler(enums);
 };
-
 
 export default useEnum;
 

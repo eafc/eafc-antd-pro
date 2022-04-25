@@ -4,7 +4,7 @@ import { Radio } from 'antd';
 
 const EafcRadio: React.FC<eafc.EafcRadioProps> = ({ options, url, enumKey, ...radioGroupProps }) => {
 
-    const enums = useEnum<eafc.Option[]>({ options: options, url: url, key: enumKey });
+    const enums = useEnum<eafc.Option[]>({ options, url, enumKey });
 
     return (<Radio.Group {...radioGroupProps}>
         {enums.map(option => {
