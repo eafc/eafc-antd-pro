@@ -42,4 +42,20 @@ declare namespace eafc {
         url?: string
         eafcOptions?: EafcTreeOption[],
     } & CascaderProps
+
+    // AccessWrapper Props
+    export type AccessWrapperProps = {
+        permission?: string;
+        children: React.ReactNode;
+    }
+
+    // AccessLink Props，属性透传给<a>标签，添加permission属性
+    export type AccessLinkProps = {
+        permission?: string
+    } & any;
+
+    // AccessButton Props
+    export type AccessButtonProps = {
+        permission?: string
+    } & ButtonProps
 }
